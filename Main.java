@@ -1,15 +1,12 @@
-package chapter3;
+package piggy.pack;
 
 /**
- * CS 114 4C
- * John and Abigail
- * Instructor: Brother Masterson
- * Description: Using employee data, calculates payroll, including gross pay, deductions, and net pay.
+ * Created by asus on 10/1/2016.
  */
 public class Main {
 
-    public static void main(String[] args){
-        Assignment4c programmingIsFun = new Assignment4c();
-        programmingIsFun.payroll();
+    public static void main (String[] args){
+        Pig game = new Pig();
+        game.theGame();
     }
 }
