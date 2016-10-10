@@ -24,7 +24,7 @@ public class Assignment4d {
             try {
                 num = Integer.parseInt(input);
             }
-            //if not an int, will be advised and loops starts over
+            //if not an int, user will be advised and loops starts over
             catch (NumberFormatException e) {
                 System.out.println("Your input is not an int.");
                 continue;
