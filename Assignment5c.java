@@ -2,6 +2,7 @@ package chapter4;
 import java.util.Scanner;
 
 /**
+ * Assignment 5c
  * Prints snarks....
  * Group 10: John and Abigail
  * CS 114 Brother Masterson
@@ -44,7 +45,7 @@ public class Assignment5c {
      * @param lotsOfSnarks
      */
     public static void powerSnarks(int lotsOfSnarks) {
-        lotsOfSnarks = (int) Math.pow(lotsOfSnarks, 5);
+        lotsOfSnarks = (int) Math.pow(5,lotsOfSnarks);
         System.out.println(lotsOfSnarks);
     }
 }
