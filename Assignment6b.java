@@ -1,65 +1,83 @@
 package chapter5;
 import java.util.Scanner;
 
+/**
+ * 6b
+ * CS 114
+ * Group 10 John and Abigail
+ * Description: User inputs amount of money, and program shows how many dollars and coins make up that amount.
+ */
+
 public class Assignment6b {
-
+    /**
+     * Asks user for money amount, and sends it as argument to printMoney()
+     * @param args
+     */
     public static void main(String[] args) {
-	    printMoney();
+        Scanner kb = new Scanner(System.in);
+        System.out.print("Enter amount: ");
+        double amount = kb.nextDouble();
+        printMoney(amount);
     }
 
-    public static void printMoney() {
-        Scanner keyboard=new Scanner(System.in);
-        System.out.print("Enter an amount: ");
-        float userAmount = keyboard.nextFloat();
-        /**
-        int dollars = (int)(userAmount / 1);
-        int quarters = (int)((userAmount - dollars) / .25);
-        int dimes = (int)((userAmount - (dollars + (quarters * .25))) / .1);
-        int nickels = (int)((userAmount - (dollars + (quarters * .25) + (dimes * .1))) / .05);
-        int pennies = (int)((userAmount - (dollars + (quarters * .25) + (dimes * .1) + (nickels * .05))) / .01);
-        double penniesS = (double)((userAmount - (dollars + (quarters * .25) + (dimes * .1) + (nickels * .05))) / .01);
-        */
+    /**
+     * Calculates and prints currency information
+     * @param amount
+     */
+    public static void printMoney(double amount) {
+        int dollarQty = 0;
+        double dollarVal;
+        double leftover;
+        //only calculates dolllars if amount is >= 1
+        if (amount >= 1 ) {
+            dollarQty = (int) (amount / 1.0);
+            dollarVal = dollarQty;
+            leftover = (double)Math.round((amount % dollarVal) * 100d) / 100d;
+        } else
+            leftover = amount;
 
-        float total = userAmount;
-        int dollarQty = (int)(userAmount / 1);
-        total = (float) dollarQty % 1;
-        System.out.println(total);
-        int quarterQty = (int)(total / .25);
-        total -= (float) quarterQty * .25;
-        System.out.println(total);
-        int dimeQty = (int)(total / .10);
-        total -= (float) dimeQty * .10;
-        System.out.println(total);
-        int nickelQty = (int)(total / .5);
-        total -= (float) nickelQty * .5;
-        System.out.println(total);
-        int pennyQty = (int)(total / .1);
-        /**
-        System.out.println(dollars);
-        System.out.println(quarters);
-        System.out.println(dimes);
-        System.out.println(nickels);
-        System.out.println(pennies);
-        System.out.println(penniesS);
-        int whatthe = (int)pennies;
-         */
-        System.out.println(dollarQty);
-        System.out.println(quarterQty);
-        System.out.println(dimeQty);
-        System.out.println(nickelQty);
-        System.out.println(pennyQty);
-/**
-        System.out.printf("\n%d\tdollar%s", dollars, getPlurality(dollars));
-        System.out.printf("\n%d\tquarter%s", quarters, getPlurality(quarters));
-        System.out.printf("\n%d\tdime%s", dimes, getPlurality(dimes));
-        System.out.printf("\n%d\tnickel%s", nickels, getPlurality(nickels));
-        if (pennies <= 1)
-            System.out.printf("\n%d\tpenny", pennies);
-        else
-            System.out.printf("\n%d\tpennies", pennies);
-*/
+        //calculates qty and val of each coin
+        int quarterQty = (int)(leftover / .25);
+        double quarterVal = quarterQty * .25;
+        leftover -= quarterVal;
+        leftover = (double)Math.round(leftover * 100d) / 100d;
+
+        int dimeQty = (int)(leftover / .1);
+        double dimeVal = dimeQty * .1;
+        leftover -= dimeVal;
+        leftover = (double)Math.round(leftover * 100d) / 100d;
+
+        int nickelQty = (int)(leftover / .05);
+        double nickelVal = nickelQty * .05;
+        leftover -= nickelVal;
+        leftover = (double)Math.round(leftover * 100d) / 100d;
+
+        int pennyQty = (int)(leftover / .01);
+
+        //does not print if there are no coins
+        if (dollarQty > 0)
+            System.out.printf("\n%d\tdollar%s", dollarQty, getPlurality(dollarQty));
+        if (quarterQty > 0)
+            System.out.printf("\n%d\tquarter%s", quarterQty, getPlurality(quarterQty));
+        if (dimeQty > 0)
+            System.out.printf("\n%d\tdime%s", dimeQty, getPlurality(dimeQty));
+        if (nickelQty > 0)
+            System.out.printf("\n%d\tnickel%s", nickelQty, getPlurality(nickelQty));
+        //since penny and pennies are very different, getPlurality() is not called
+        if (pennyQty > 0) {
+            if (pennyQty == 1)
+                System.out.printf("\n%d\tpenny", pennyQty);
+            else
+                System.out.printf("\n%d\tpennies", pennyQty);
+        }
+
     }
-/**
+
+    /**
+     * Calculates if the coin should print as a plural
+     * @param currency
+     * @return String hasS
+     */
     public static String getPlurality(int currency) {
         String hasS;
         if (currency <= 1)
@@ -68,5 +86,4 @@ public class Assignment6b {
             hasS = "s";
         return hasS;
     }
- */
 }
