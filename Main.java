@@ -27,6 +27,11 @@ public class Main {
         calcDups(inputList);
     }
 
+    /**
+     * Calculates duplicate values
+     * Calls isInDups() multiples times
+     * @param inputList
+     */
     public static void calcDups(int inputList[]) {
         int dups[] = new int[inputList.length];
         int dupsInInputList = 0;
@@ -50,8 +55,14 @@ public class Main {
         }
     }
 
-    public static boolean isInDups(int list[], int value){
-        for(int i : list){
+    /**
+     * Checks if value is in the dupsList
+     * @param dupsList
+     * @param value
+     * @return boolean
+     */
+    public static boolean isInDups(int dupsList[], int value){
+        for(int i : dupsList){
             if(i == value){
                 return true;
             }
